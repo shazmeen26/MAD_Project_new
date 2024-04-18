@@ -48,6 +48,17 @@ dependencies:
   latlong2: any
   geocoding: any
   twilio_flutter: any
+  flutter_launcher_icons: ^0.13.1
+#  flutter_app_name: ^0.1.0
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "lib/images/launcher_icon.png"
+  min_sdk_android: 21
+
+
+
 
 dev_dependencies:
   flutter_test:

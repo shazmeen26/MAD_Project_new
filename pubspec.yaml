@@ -49,6 +49,7 @@ dependencies:
   geocoding: any
   twilio_flutter: any
   flutter_launcher_icons: ^0.13.1
+  carousel_slider: ^4.0.0
 #  flutter_app_name: ^0.1.0
 
 flutter_launcher_icons:

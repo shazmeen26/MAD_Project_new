@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(ViewAppointment());
@@ -10,11 +11,12 @@ class ViewAppointment extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Patient Timeline'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.deepPurple, // Updated app bar color
       ),
-
       body: ListView(
         children: [
+          Card(child: Image.network('https://assets-global.website-files.com/6092dc6b87cb4a214c3c2dde/643e7a0383dc9168d6279198_Fighting%20Drug%20Addiction%20By%20Taking%20Help%20From%20Best%20Rehab%20Centers.png'),),
+
           _buildTimelineItem(
             title: 'Register',
             onPressed: () {
@@ -22,15 +24,13 @@ class ViewAppointment extends StatelessWidget {
             },
             isFirst: true,
             icon: Icons.article,
-
-             // Add checkbox for Register
+            hasCheckbox: true,
           ),
           _buildTimelineItem(
             title: 'Appointment',
             onPressed: () {
               // Action for Appointment
             },
-            isFirst: true,
             icon: Icons.calendar_today,
             hasCheckbox: true,
           ),
@@ -39,8 +39,7 @@ class ViewAppointment extends StatelessWidget {
             onPressed: () {
               // Action for Admit
             },
-            isFirst: true,
-            icon: Icons.local_hospital, // Add icon for Admit
+            icon: Icons.local_hospital,
             hasCheckbox: true,
           ),
           _buildTimelineItem(
@@ -48,8 +47,7 @@ class ViewAppointment extends StatelessWidget {
             onPressed: () {
               // Action for Treatment
             },
-            isFirst: true,
-            icon: Icons.healing, // Add icon for Treatment
+            icon: Icons.healing,
             hasCheckbox: true,
           ),
           _buildTimelineItem(
@@ -57,8 +55,7 @@ class ViewAppointment extends StatelessWidget {
             onPressed: () {
               // Action for Release
             },
-            isFirst: true,
-            icon: Icons.check_box, // Add icon for Release
+            icon: Icons.check_box,
             hasCheckbox: true,
             isLast: true,
           ),
@@ -80,30 +77,34 @@ class ViewAppointment extends StatelessWidget {
         Row(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 20.0, top: 60.0),
-              height: 24.0,
-              width: 24.0,
+              margin: EdgeInsets.only(left: 20.0, top: 20.0),
+              height: 40.0,
+              width: 40.0,
               decoration: BoxDecoration(
-                shape: BoxShape.rectangle,
-                color: Colors.purpleAccent,
+                shape: BoxShape.circle,
+                color: Colors.deepPurple,
               ),
-              child: isFirst ? Icon(icon, color: Colors.white) : null,
+              child:  Icon(icon, color: Colors.white, size: 20)
             ),
             Expanded(
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 20.0),
                 height: 3.0,
-                color: Colors.purple,
+                color: Colors.deepPurple,
               ),
             ),
           ],
         ),
         ListTile(
-          title: Text(title),
+          title: Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           onTap: onPressed,
           trailing: hasCheckbox
               ? Checkbox(
-            value: false, // Change this value according to the state
+            activeColor: Colors.deepPurple,
+            value: title == 'Register',
             onChanged: (newValue) {
               // Handle checkbox state change
             },

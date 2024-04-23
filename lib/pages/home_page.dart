@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enableInfiniteScroll: true,
                     autoPlayAnimationDuration: Duration(milliseconds: 1500),
-                    viewportFraction: 0.99g,
+                    viewportFraction: 0.99,
                   ),
                   items: [
                     // Replace these Image.asset widgets with your actual images

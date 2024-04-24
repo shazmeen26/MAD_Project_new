@@ -5,11 +5,18 @@ import 'DisplayCenters.dart';
 import 'ViewAppointment.dart'; // Import the doc.dart file
 import 'package:carousel_slider/carousel_slider.dart';
 
-class HomePage extends StatelessWidget {
-  // HomePage({Key? key});
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
   final user = FirebaseAuth.instance.currentUser!;
-
+  bool isRegistered = true; // State variable to track registration checkbox
+  bool appointmentChecked = false;
+  bool admitChecked = false;
+  bool treatmentChecked = false;
+  bool releaseChecked = false;
   // Sign user out method
   void signUserOut(BuildContext context) {
     FirebaseAuth.instance.signOut();
@@ -43,20 +50,14 @@ class HomePage extends StatelessWidget {
           children: [
             Card(
               elevation: 5,
-              shape: RoundedRectangleBorder(
-
-              ),
+              shape: RoundedRectangleBorder(),
               margin: EdgeInsets.all(20),
               child: ClipRRect(
-
                 child: CarouselSlider(
-
                   options: CarouselOptions(
                     height: 190.0,
-
                     enlargeCenterPage: true,
                     autoPlay: true,
-
                     aspectRatio: 16 / 9,
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enableInfiniteScroll: true,
@@ -64,18 +65,17 @@ class HomePage extends StatelessWidget {
                     viewportFraction: 0.99,
                   ),
                   items: [
-                    // Replace these Image.asset widgets with your actual images
                     Image.asset('lib/images/drug.png', fit: BoxFit.cover),
-
-                    Image.network('https://assets-global.website-files.com/6092dc6b87cb4a214c3c2dde/643f73467fbf68dc140c7024_Self%20Help%20does%20not%20work%20in%20Substance%20Abuse%20Recovery2.png')
-                    ,Image.network('https://anchoredtidesrecovery.com/wp-content/uploads/2022/02/Parenting-Someone-with-a-Cocaine-Addiction1.jpg'),
-                    Image.network('https://drugfreecountry.com/wp-content/uploads/2022/11/istockphoto-1380976736-612x612-1.jpg')
+                    Image.network(
+                        'https://assets-global.website-files.com/6092dc6b87cb4a214c3c2dde/643f73467fbf68dc140c7024_Self%20Help%20does%20not%20work%20in%20Substance%20Abuse%20Recovery2.png'),
+                    Image.network(
+                        'https://anchoredtidesrecovery.com/wp-content/uploads/2022/02/Parenting-Someone-with-a-Cocaine-Addiction1.jpg'),
+                    Image.network(
+                        'https://drugfreecountry.com/wp-content/uploads/2022/11/istockphoto-1380976736-612x612-1.jpg')
                   ],
                 ),
               ),
             ),
-
-            // Row containing the buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -83,14 +83,13 @@ class HomePage extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ViewAppointmentPage()),
+                      MaterialPageRoute(
+                          builder: (context) => ViewAppointmentPage()),
                     );
                   },
                   label: Text(
                     "Appointments",
-                    style: TextStyle(fontSize: 16,
-                        color: Colors.white),
-
+                    style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
@@ -117,45 +116,60 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-
             buildTimelineItem(
               title: 'Register',
-              onPressed: () {},
+              onPressed: () {
+
+              },
               isFirst: true,
               icon: Icons.article,
               hasCheckbox: true,
+              isChecked: isRegistered, // Pass checkbox state
             ),
             buildTimelineItem(
               title: 'Appointment',
               onPressed: () {
-                // Action for Appointment
+                setState(() {
+                  appointmentChecked = !appointmentChecked; // Toggle checkbox state
+                });
               },
+              isFirst: false,
               icon: Icons.calendar_today,
               hasCheckbox: true,
+              isChecked: appointmentChecked, // Initialize checkbox state
             ),
             buildTimelineItem(
               title: 'Admit',
               onPressed: () {
-                // Action for Admit
+                setState(() {
+                  admitChecked = !admitChecked; // Toggle checkbox state
+                });
               },
               icon: Icons.local_hospital,
               hasCheckbox: true,
+              isChecked: admitChecked, // Initialize checkbox state
             ),
             buildTimelineItem(
               title: 'Treatment',
               onPressed: () {
-                // Action for Treatment
+                setState(() {
+                  treatmentChecked = !treatmentChecked; // Toggle checkbox state
+                });
               },
               icon: Icons.healing,
               hasCheckbox: true,
+              isChecked: treatmentChecked, // Initialize checkbox state
             ),
             buildTimelineItem(
               title: 'Release',
               onPressed: () {
-                // Action for Release
+                setState(() {
+                  releaseChecked = !releaseChecked; // Toggle checkbox state
+                });
               },
               icon: Icons.check_box,
               hasCheckbox: true,
+              isChecked: releaseChecked, // Initialize checkbox state
               isLast: true,
             ),
           ],
@@ -171,7 +185,7 @@ Widget buildTimelineItem({
   bool isFirst = false,
   bool isLast = false,
   IconData? icon,
-  bool hasCheckbox = false,
+  required bool isChecked, required bool hasCheckbox,
 }) {
   return Column(
     children: [
@@ -202,15 +216,15 @@ Widget buildTimelineItem({
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         onTap: onPressed,
-        trailing: hasCheckbox
-            ? Checkbox(
+        trailing: Checkbox(
           activeColor: Colors.deepPurple,
-          value: title == 'Register',
+          value: isChecked,
           onChanged: (newValue) {
-            // Handle checkbox state change
+            // Update the checkbox state when tapped
+            // This function will be called when the checkbox is tapped
+            // You should implement logic here to update the state
           },
-        )
-            : null,
+        ),
       ),
     ],
   );

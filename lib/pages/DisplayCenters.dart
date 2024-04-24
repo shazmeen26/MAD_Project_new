@@ -5,7 +5,6 @@ import 'package:location/location.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:math' show cos, sqrt, asin, pow, pi;
-
 import 'DoctorAppointmentForm.dart';
 
 class DisplayCenters extends StatefulWidget {

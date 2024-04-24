@@ -11,6 +11,8 @@ class RehabCenterRegistrationScreen extends StatefulWidget {
 class _RehabCenterRegistrationScreenState extends State<RehabCenterRegistrationScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // final TextEditingController _emailController = TextEditingController();
+  // final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _capacityController = TextEditingController();
@@ -24,6 +26,8 @@ class _RehabCenterRegistrationScreenState extends State<RehabCenterRegistrationS
       if (locations.isNotEmpty) {
         // Save center details to Firestore
         await _firestore.collection('rehab_centers').add({
+          // 'email': _emailController.text,
+          // 'password': _passwordController.text,
           'name': _nameController.text,
           'address': _addressController.text,
           'latitude': locations[0].latitude,
@@ -74,34 +78,103 @@ class _RehabCenterRegistrationScreenState extends State<RehabCenterRegistrationS
         padding: EdgeInsets.all(16.0),
         child: ListView(
           children: [
+            // TextFormField(
+            //   controller: _nameController,
+            //   decoration: InputDecoration(labelText: 'Email'),
+            // ),
+            // TextFormField(
+            //   controller: _nameController,
+            //   decoration: InputDecoration(labelText: 'Set Password'),
+            // ),
             TextFormField(
               controller: _nameController,
-              decoration: InputDecoration(labelText: 'Name'),
+              decoration: InputDecoration(
+                labelText: 'Name',
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+               ),
+
             ),
+            const SizedBox(height: 10),
             TextFormField(
               controller: _addressController,
-              decoration: InputDecoration(labelText: 'Address'),
+              decoration: InputDecoration(
+                labelText: 'Address',
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+              ),
             ),
+            const SizedBox(height: 10),
+
             TextFormField(
               controller: _capacityController,
-              decoration: InputDecoration(labelText: 'Capacity'),
+              decoration: InputDecoration(labelText: 'Capacity',
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+              ),
               keyboardType: TextInputType.number,
             ),
+            const SizedBox(height: 10),
+
             TextFormField(
               controller: _numDoctorsController,
-              decoration: InputDecoration(labelText: 'Number of Doctors'),
+              decoration: InputDecoration(labelText: 'Number of Doctors',
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+              ),
               keyboardType: TextInputType.number,
             ),
+            const SizedBox(height: 10),
+
             TextFormField(
               controller: _ratingController,
-              decoration: InputDecoration(labelText: 'Rating'),
+              decoration: InputDecoration(labelText: 'Rating',
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.blue),
+                ),
+              ),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _registerCenter,
-              child: Text('Register Center'),
+            const SizedBox(height: 10),
+
+
+        SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: _registerCenter,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue[900],
+            minimumSize: Size(320, 50),
+            padding: EdgeInsets.all(20),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
             ),
+          ),
+          child: Text('Register Center',
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 16)
+          ),
+        )
           ],
         ),
       ),

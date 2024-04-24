@@ -86,7 +86,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
+
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -95,22 +95,14 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 const SizedBox(height: 20),
 
-                // logo
-                const Icon(
-                  Icons.lock,
-                  size: 80,
+
+                // Display the image above the form
+                Image.asset(
+                  'lib/images/register.jpg',
+                  fit: BoxFit.cover,
                 ),
 
-                const SizedBox(height: 30),
 
-                // let's create an account for you
-                Text(
-                  'Let\'s Create an account for you!',
-                  style: TextStyle(
-                    color: Colors.grey[800],
-                    fontSize: 16,
-                  ),
-                ),
 
                 const SizedBox(height: 25),
 
@@ -217,26 +209,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 30),
                 // not a member? register now
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Already a member?',
-                      style: TextStyle(color: Colors.grey[700]),
-                    ),
-                    const SizedBox(width: 5),
-                    GestureDetector(
-                      onTap: widget.onTap,
-                      child: const Text(
-                        'Login now',
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  ],
-                )
+
               ],
             ),
           ),

@@ -6,14 +6,14 @@ import 'ViewAppointment.dart'; // Import the doc.dart file
 import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key});
+  // HomePage({Key? key});
 
   final user = FirebaseAuth.instance.currentUser!;
 
   // Sign user out method
   void signUserOut(BuildContext context) {
     FirebaseAuth.instance.signOut();
-    Navigator.pop(context); // Pop back to previous screen
+    Navigator.pushReplacementNamed(context, '/login'); // Pop back to previous screen
   }
 
   @override
@@ -56,6 +56,7 @@ class HomePage extends StatelessWidget {
 
                     enlargeCenterPage: true,
                     autoPlay: true,
+
                     aspectRatio: 16 / 9,
                     autoPlayCurve: Curves.fastOutSlowIn,
                     enableInfiniteScroll: true,
@@ -87,7 +88,9 @@ class HomePage extends StatelessWidget {
                   },
                   label: Text(
                     "Appointments",
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16,
+                        color: Colors.white),
+
                   ),
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
@@ -104,11 +107,11 @@ class HomePage extends StatelessWidget {
                   },
                   label: Text(
                     "Rehab centers",
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16, color: Colors.white),
                   ),
                   backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   icon: Icon(Icons.local_hospital),
                 ),

@@ -214,7 +214,7 @@ class _DoctorAppointmentFormState extends State<DoctorAppointmentForm> {
               ElevatedButton(
                 onPressed: bookAppointment,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.blue[900],
                   textStyle: TextStyle(color: Colors.white),
                   padding: EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
@@ -222,10 +222,11 @@ class _DoctorAppointmentFormState extends State<DoctorAppointmentForm> {
                   ),
                 ),
                 child: Text(
-                  'Submit',
+                  'Book',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
               ),

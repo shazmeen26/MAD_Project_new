@@ -112,7 +112,11 @@ class _DisplayCentersState extends State<DisplayCenters> {
               Map<String, dynamic> data =
               document.data() as Map<String, dynamic>;
               return ListTile(
-                title: Text(data['name']),
+                title: Text(data['name'],
+                    style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold,
+                )
+                ),
                 onTap: () {
                   Navigator.push(
                     context,
@@ -202,7 +206,7 @@ class CenterDetailsBody extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              flex: 3,
+              flex: 2,
               child: FlutterMap(
                 options: MapOptions(
                   center: LatLng(data['latitude'], data['longitude']),
@@ -215,8 +219,8 @@ class CenterDetailsBody extends StatelessWidget {
                   MarkerLayer(
                     markers: [
                       Marker(
-                        width: 80.0,
-                        height: 80.0,
+                        width: 100.0,
+                        height: 100.0,
                         point: LatLng(data['latitude'], data['longitude']),
                         child: Icon(Icons.location_on, color: Colors.red),
                       ),
@@ -227,6 +231,7 @@ class CenterDetailsBody extends StatelessWidget {
                           point: LatLng(currentLocation!.latitude!,
                               currentLocation!.longitude!),
                           child: Icon(Icons.person_pin, color: Colors.blue),
+
                         ),
                     ],
                   ),
@@ -303,10 +308,11 @@ class CenterDetailsBody extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Colors.blue[900],
                         padding: EdgeInsets.symmetric(vertical: 16),
+
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
                         ),
                       ),
                       child: Text(
@@ -314,6 +320,7 @@ class CenterDetailsBody extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          color: Colors.white,
                         ),
                       ),
                     ),

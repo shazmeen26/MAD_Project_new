@@ -81,6 +81,7 @@ class _DisplayCentersState extends State<DisplayCenters> {
             return Center(child: Text('No data available'));
           }
 
+
           // Filter centers within 100 km radius
           List<DocumentSnapshot> centers = snapshot.data!.docs;
           List<DocumentSnapshot> nearbyCenters = [];

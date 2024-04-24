@@ -151,7 +151,7 @@ class _DoctorAppointmentFormState extends State<DoctorAppointmentForm> {
               TextFormField(
                 controller: _doctorController,
                 decoration: InputDecoration(
-                  labelText: 'Doctor',
+                  labelText: 'Department',
                   border: OutlineInputBorder(),
                 ),
               ),

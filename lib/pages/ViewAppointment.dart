@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class ViewAppointmentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Appointments'),
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('Appointments').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('Appointments')
+            .where('userId', isEqualTo: user!.uid) // Filter appointments by user ID
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasError) {
             return Center(
@@ -20,6 +26,13 @@ class ViewAppointmentPage extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
               child: CircularProgressIndicator(),
+            );
+          }
+
+          if (snapshot.data!.docs.isEmpty) {
+            // Show a message if there are no appointments for the user
+            return Center(
+              child: Text('No appointments found.'),
             );
           }
 
@@ -47,5 +60,3 @@ class ViewAppointmentPage extends StatelessWidget {
     );
   }
 }
-
-
